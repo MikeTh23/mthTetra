@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris - Classico Gioco</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TETRIS</h1>
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">Inizia</button>
+                <button id="pauseBtn" class="btn btn-secondary" disabled>Pausa</button>
+                <button id="restartBtn" class="btn btn-secondary">Riavvia</button>
+                <button id="muteBtn" class="btn btn-icon">🔊</button>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <!-- Pannello sinistro: Hold -->
+            <div class="side-panel left-panel">
+                <div class="panel-section">
+                    <h3>HOLD</h3>
+                    <canvas id="holdCanvas" width="120" height="120"></canvas>
+                    <p class="help-text">Premi C</p>
+                </div>
+                <div class="panel-section">
+                    <h3>HIGH SCORE</h3>
+                    <div id="highScore" class="score-display">0</div>
+                </div>
+            </div>
+
+            <!-- Canvas principale -->
+            <div class="main-game">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div id="gameOverlay" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">GAME OVER</h2>
+                        <p id="overlayMessage">Punteggio finale: <span id="finalScore">0</span></p>
+                        <button id="overlayBtn" class="btn btn-primary">Gioca Ancora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pannello destro: Next e Stats -->
+            <div class="side-panel right-panel">
+                <div class="panel-section">
+                    <h3>PROSSIMO</h3>
+                    <canvas id="nextCanvas" width="120" height="120"></canvas>
+                </div>
+                <div class="panel-section stats">
+                    <h3>STATISTICHE</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Punteggio:</span>
+                        <span id="score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Livello:</span>
+                        <span id="level" class="stat-value">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Linee:</span>
+                        <span id="lines" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Pezzi:</span>
+                        <span id="pieces" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div class="panel-section">
+                    <h3>CONTROLLI</h3>
+                    <div class="controls-help">
+                        <p>← → : Muovi</p>
+                        <p>↓ : Scendi</p>
+                        <p>↑ : Ruota</p>
+                        <p>SPAZIO : Drop</p>
+                        <p>C : Hold</p>
+                        <p>P : Pausa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controlli Touch per Mobile -->
+        <div id="mobileControls" class="mobile-controls">
+            <div class="controls-row">
+                <button class="touch-btn touch-btn-hold" id="touchHold">
+                    <span>HOLD</span>
+                </button>
+                <button class="touch-btn touch-btn-rotate" id="touchRotate">
+                    <span>↻</span>
+                </button>
+            </div>
+            <div class="controls-row">
+                <button class="touch-btn touch-btn-arrow" id="touchLeft">
+                    <span>←</span>
+                </button>
+                <button class="touch-btn touch-btn-arrow" id="touchDown">
+                    <span>↓</span>
+                </button>
+                <button class="touch-btn touch-btn-arrow" id="touchRight">
+                    <span>→</span>
+                </button>
+            </div>
+            <div class="controls-row">
+                <button class="touch-btn touch-btn-drop" id="touchDrop">
+                    <span>DROP</span>
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="highscores-section">
+                <h3>🏆 TOP 10 PUNTEGGI</h3>
+                <div id="highscoresList" class="highscores-list"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="tetrominos.js"></script>
+    <script src="storage.js"></script>
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
