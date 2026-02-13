@@ -368,47 +368,105 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .container {
+        padding-bottom: 200px; /* Spazio per i controlli fissi */
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .controls {
+        gap: 5px;
+    }
+
     .game-container {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
-    .side-panel {
-        width: 100%;
-        max-width: 500px;
+    /* Nascondi Hold e Next canvas su mobile per risparmiare spazio */
+    .left-panel {
+        display: none !important;
     }
 
-    .left-panel,
     .right-panel {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+        width: 100%;
+        max-width: 320px;
+        padding: 10px;
+    }
+
+    .right-panel .panel-section:first-child {
+        display: none; /* Nascondi Next piece */
     }
 
     .panel-section {
-        flex: 1;
-        min-width: 200px;
+        margin-bottom: 10px;
+    }
+
+    /* Statistiche compatte */
+    .stats {
+        padding: 10px;
+    }
+
+    .stat-row {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+
+    /* Nascondi la sezione controlli testuale */
+    .controls-help {
+        display: none;
+    }
+
+    /* Canvas più piccolo ma visibile */
+    #gameCanvas {
+        width: 240px !important;
+        height: 480px !important;
+    }
+
+    /* Footer più compatto */
+    footer {
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .highscores-section h3 {
+        font-size: 1rem;
+    }
+
+    .highscore-item {
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 640px) {
     header h1 {
-        font-size: 2.5rem;
-        letter-spacing: 0.3rem;
-    }
-
-    #gameCanvas {
-        width: 250px !important;
-        height: 500px !important;
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+        margin-bottom: 15px;
     }
 
     .btn {
-        padding: 10px 18px;
-        font-size: 0.9rem;
+        padding: 8px 16px;
+        font-size: 0.85rem;
     }
 
     .overlay-content h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    /* Assicura che il canvas sia ben centrato e visibile */
+    .main-game {
+        margin: 10px 0;
     }
 }
 
@@ -449,9 +507,16 @@ canvas.active {
 /* Mobile Touch Controls */
 .mobile-controls {
     display: none; /* Nascosto su desktop */
-    margin: 30px auto;
-    max-width: 400px;
-    padding: 0 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(15, 12, 41, 0.98) 0%, rgba(15, 12, 41, 0.95) 80%, transparent 100%);
+    backdrop-filter: blur(10px);
+    padding: 15px 10px 20px;
+    z-index: 1000;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .controls-row {
@@ -537,16 +602,70 @@ canvas.active {
     }
 }
 
-/* Ottimizza per schermi molto piccoli */
-@media (max-width: 480px) {
+/* Ottimizza i controlli per mobile */
+@media (hover: none) and (pointer: coarse), (max-width: 1024px) {
+    .controls-row {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .controls-row:last-child {
+        margin-bottom: 0;
+    }
+
     .touch-btn {
-        min-width: 60px;
-        min-height: 60px;
-        padding: 15px;
-        font-size: 1.3rem;
+        min-width: 65px;
+        min-height: 65px;
+        padding: 10px;
+    }
+
+    .touch-btn-arrow {
+        font-size: 1.8rem;
+    }
+
+    .touch-btn-rotate {
+        font-size: 2rem;
+    }
+
+    .touch-btn-hold,
+    .touch-btn-drop {
+        font-size: 0.9rem;
+    }
+}
+
+/* Schermi molto piccoli */
+@media (max-width: 380px) {
+    .mobile-controls {
+        padding: 10px 5px 15px;
+    }
+
+    .touch-btn {
+        min-width: 55px;
+        min-height: 55px;
+        padding: 8px;
+        font-size: 1.1rem;
+    }
+
+    .touch-btn-arrow {
+        font-size: 1.5rem;
+    }
+
+    .touch-btn-rotate {
+        font-size: 1.7rem;
+    }
+
+    .touch-btn-hold,
+    .touch-btn-drop {
+        font-size: 0.8rem;
     }
 
     .controls-row {
-        gap: 8px;
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+
+    #gameCanvas {
+        width: 200px !important;
+        height: 400px !important;
     }
 }
