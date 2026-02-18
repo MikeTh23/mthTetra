@@ -115,55 +115,26 @@ class TetrisGame {
         const touchRotate = document.getElementById('touchRotate');
         const touchHold = document.getElementById('touchHold');
 
-        const preventDefaults = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        // Su mobile usiamo touchstart con preventDefault (impedisce il click successivo)
+        // Su desktop (no touch) usiamo click come fallback
+        const addBtn = (el, action) => {
+            let touched = false;
+            el.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                touched = true;
+                if (this.state === GameState.PLAYING) action();
+            }, { passive: false });
+            el.addEventListener('click', () => {
+                if (touched) { touched = false; return; } // evita doppio trigger su mobile
+                if (this.state === GameState.PLAYING) action();
+            });
         };
 
-        // Sinistra
-        touchLeft.addEventListener('touchstart', (e) => {
-            preventDefaults(e);
-            if (this.state === GameState.PLAYING) this.movePiece(-1, 0);
-        });
-        touchLeft.addEventListener('click', () => {
-            if (this.state === GameState.PLAYING) this.movePiece(-1, 0);
-        });
-
-        // Destra
-        touchRight.addEventListener('touchstart', (e) => {
-            preventDefaults(e);
-            if (this.state === GameState.PLAYING) this.movePiece(1, 0);
-        });
-        touchRight.addEventListener('click', () => {
-            if (this.state === GameState.PLAYING) this.movePiece(1, 0);
-        });
-
-        // Giù = Hard Drop
-        touchDown.addEventListener('touchstart', (e) => {
-            preventDefaults(e);
-            if (this.state === GameState.PLAYING) this.hardDrop();
-        });
-        touchDown.addEventListener('click', () => {
-            if (this.state === GameState.PLAYING) this.hardDrop();
-        });
-
-        // Rotazione
-        touchRotate.addEventListener('touchstart', (e) => {
-            preventDefaults(e);
-            if (this.state === GameState.PLAYING) this.rotatePiece(true);
-        });
-        touchRotate.addEventListener('click', () => {
-            if (this.state === GameState.PLAYING) this.rotatePiece(true);
-        });
-
-        // Hold
-        touchHold.addEventListener('touchstart', (e) => {
-            preventDefaults(e);
-            if (this.state === GameState.PLAYING) this.holdCurrentPiece();
-        });
-        touchHold.addEventListener('click', () => {
-            if (this.state === GameState.PLAYING) this.holdCurrentPiece();
-        });
+        addBtn(touchLeft,   () => this.movePiece(-1, 0));
+        addBtn(touchRight,  () => this.movePiece(1, 0));
+        addBtn(touchDown,   () => this.hardDrop());
+        addBtn(touchRotate, () => this.rotatePiece(true));
+        addBtn(touchHold,   () => this.holdCurrentPiece());
     }
 
     handleKeyDown(e) {

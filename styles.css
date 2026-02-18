@@ -626,9 +626,12 @@ canvas.active {
         font-size: 2rem;
     }
 
-    .touch-btn-hold,
-    .touch-btn-drop {
+    .touch-btn-hold {
         font-size: 0.9rem;
+    }
+
+    .touch-btn-drop {
+        font-size: 1.8rem;
     }
 }
 
@@ -653,9 +656,12 @@ canvas.active {
         font-size: 1.7rem;
     }
 
-    .touch-btn-hold,
-    .touch-btn-drop {
+    .touch-btn-hold {
         font-size: 0.8rem;
+    }
+
+    .touch-btn-drop {
+        font-size: 1.5rem;
     }
 
     .controls-row {
