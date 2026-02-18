@@ -386,47 +386,51 @@ footer {
         gap: 5px;
     }
 
+    /* Canvas + next piece affiancati, tutto il resto nascosto */
     .game-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 8px;
     }
 
-    /* Nascondi Hold e Next canvas su mobile per risparmiare spazio */
     .left-panel {
         display: none !important;
     }
 
+    /* Right panel: mostra solo il next piece, nasconde tutto il resto */
     .right-panel {
-        width: 100%;
-        max-width: 320px;
-        padding: 10px;
+        background: none;
+        border: none;
+        padding: 0;
+        min-width: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .right-panel .panel-section:first-child {
-        display: none; /* Nascondi Next piece */
+        display: block;
     }
 
-    .panel-section {
-        margin-bottom: 10px;
+    .right-panel .panel-section:first-child h3 {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
     }
 
-    /* Statistiche compatte */
-    .stats {
-        padding: 10px;
+    /* Nascondi statistiche e controlli testuali su mobile */
+    .right-panel .stats,
+    .right-panel .controls-help,
+    .right-panel .panel-section:not(:first-child) {
+        display: none !important;
     }
 
-    .stat-row {
-        font-size: 0.85rem;
-        margin-bottom: 5px;
+    #nextCanvas {
+        width: 72px !important;
+        height: 72px !important;
     }
 
-    /* Nascondi la sezione controlli testuale */
-    .controls-help {
-        display: none;
-    }
-
-    /* Canvas più piccolo ma visibile */
+    /* Canvas di gioco */
     #gameCanvas {
         width: 240px !important;
         height: 480px !important;
