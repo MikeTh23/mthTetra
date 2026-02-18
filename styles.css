@@ -490,20 +490,6 @@ footer {
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Loading animation for canvas */
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-canvas {
-    animation: pulse 2s ease-in-out infinite;
-}
-
 canvas.active {
     animation: none;
 }
