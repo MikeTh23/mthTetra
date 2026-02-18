@@ -113,7 +113,6 @@ class TetrisGame {
         const touchRight = document.getElementById('touchRight');
         const touchDown = document.getElementById('touchDown');
         const touchRotate = document.getElementById('touchRotate');
-        const touchHold = document.getElementById('touchHold');
 
         // Su mobile usiamo touchstart con preventDefault (impedisce il click successivo)
         // Su desktop (no touch) usiamo click come fallback
@@ -134,7 +133,6 @@ class TetrisGame {
         addBtn(touchRight,  () => this.movePiece(1, 0));
         addBtn(touchDown,   () => this.hardDrop());
         addBtn(touchRotate, () => this.rotatePiece(true));
-        addBtn(touchHold,   () => this.holdCurrentPiece());
     }
 
     handleKeyDown(e) {
