@@ -374,7 +374,7 @@ footer {
     }
 
     .container {
-        padding-bottom: 200px; /* Spazio per i controlli fissi */
+        padding-bottom: 120px; /* Spazio per i controlli fissi */
     }
 
     header h1 {
@@ -513,7 +513,7 @@ canvas.active {
     right: 0;
     background: linear-gradient(to top, rgba(15, 12, 41, 0.98) 0%, rgba(15, 12, 41, 0.95) 80%, transparent 100%);
     backdrop-filter: blur(10px);
-    padding: 15px 10px 20px;
+    padding: 10px 10px 15px;
     z-index: 1000;
     border-top: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
@@ -575,8 +575,7 @@ canvas.active {
 .touch-btn-drop {
     background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(255, 100, 0, 0.3) 100%);
     border-color: rgba(255, 0, 0, 0.5);
-    flex: 1;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
 }
 
 .touch-btn-drop:active {
